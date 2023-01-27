@@ -19,6 +19,12 @@ TextStyle whiteTxtStyle = const TextStyle(
   color: Colors.white,
 );
 
+TextStyle whiteBoldTxtStyle = const TextStyle(
+  fontSize: 20,
+  color: Colors.white,
+  fontWeight: FontWeight.bold,
+);
+
 TextStyle kFilterStyle = TextStyle(
   color: Color(MyColors.bg02),
   fontWeight: FontWeight.w500,

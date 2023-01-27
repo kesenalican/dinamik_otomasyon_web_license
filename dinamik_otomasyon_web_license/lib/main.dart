@@ -1,3 +1,5 @@
+import 'package:dinamik_otomasyon_web_license/view/screens/auth/view/auth.dart';
+import 'package:dinamik_otomasyon_web_license/view/screens/home/view/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -12,18 +14,11 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       title: 'Material App',
       debugShowCheckedModeBanner: false,
-      localizationsDelegates: const [],
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Material App Bar'),
-        ),
-        body: const Center(
-          child: Text('Hello World'),
-        ),
-      ),
+      localizationsDelegates: [],
+      home: LoginPage(),
     );
   }
 }
