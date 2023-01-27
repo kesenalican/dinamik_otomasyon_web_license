@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:dinamik_otomasyon_web_license/core/constants/constants.dart';
 import 'package:dinamik_otomasyon_web_license/core/constants/route_constants.dart';
 import 'package:dinamik_otomasyon_web_license/core/extensions/extensions.dart';
@@ -8,6 +9,7 @@ import 'package:dinamik_otomasyon_web_license/view/styles/colors.dart';
 import 'package:dinamik_otomasyon_web_license/view/styles/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginPage extends HookWidget {
   const LoginPage({super.key});
@@ -17,6 +19,21 @@ class LoginPage extends HookWidget {
     final usernameController = useTextEditingController(text: '');
     final passwordController = useTextEditingController(text: '');
     final formKey = useMemoized(() => GlobalKey<FormState>());
+    final rememberMe = useState(false);
+    void loadLoginInfo() async {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      var userName = prefs.getString('user_name');
+      usernameController.text = userName!;
+    }
+
+    void rememberMeCheckBox(bool? value) async {
+      await SharedPreferences.getInstance().then((prefs) {
+        prefs.setBool('remember_me', rememberMe.value);
+        prefs.setString('user_name', usernameController.text);
+        rememberMe.value = value!;
+      });
+    }
+
     return Scaffold(
       resizeToAvoidBottomInset: true,
       body: Container(
@@ -54,6 +71,23 @@ class LoginPage extends HookWidget {
               ),
               SizedBox(
                 height: context.dynamicHeight * 0.01,
+              ),
+              //* CHECKBOX
+              Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: context.dynamicWidth * 0.4,
+                ),
+                child: CheckboxListTile(
+                  checkColor: Color(MyColors.bg01),
+                  value: rememberMe.value,
+                  onChanged: rememberMeCheckBox,
+                  activeColor: Colors.white,
+                  title: AutoSizeText(
+                    Constants.rememberMe,
+                    style: whiteTxtStyle,
+                  ),
+                  controlAffinity: ListTileControlAffinity.leading,
+                ),
               ),
               ElevatedButton(
                 onPressed: () {
