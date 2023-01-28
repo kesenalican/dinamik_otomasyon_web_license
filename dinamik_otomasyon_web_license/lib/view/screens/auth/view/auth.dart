@@ -9,6 +9,7 @@ import 'package:dinamik_otomasyon_web_license/view/styles/colors.dart';
 import 'package:dinamik_otomasyon_web_license/view/styles/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginPage extends HookWidget {

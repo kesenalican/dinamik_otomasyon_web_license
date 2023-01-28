@@ -1,3 +1,4 @@
+import 'package:dinamik_otomasyon_web_license/view/screens/addLicense/view/add_license.dart';
 import 'package:dinamik_otomasyon_web_license/view/screens/auth/view/auth.dart';
 import 'package:dinamik_otomasyon_web_license/view/screens/home/view/home_page.dart';
 import 'package:flutter/material.dart';
